@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thiệp chúc mừng ngày Phụ nữ Việt Nam 20/10 dành cho đội Võ Thị Sáu.">
+    <title>Chúc Mừng 20/10 - Đội Võ Thị Sáu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;700&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main>
+        <!-- Welcome Screen -->
+        <section id="welcome-screen" class="screen active">
+            <div class="content-wrapper-welcome">
+                <h1 class="title">Chúc mừng 20/10</h1>
+                <p class="subtitle">Thân gửi các chị em đội Võ Thị Sáu</p>
+                <p class="description">
+                    Nhân ngày Phụ nữ Việt Nam, xin gửi những lời chúc ấm áp và chân thành nhất. Chúc các chị em luôn xinh đẹp, rạng rỡ và ngập tràn hạnh phúc. Chúc cho những cô giáo tương lai thành công trên bước đường gieo mầm xanh của mình &lt;3, mãi iu...
+                </p>
+                <form id="name-form">
+                    <input type="text" id="name-input" placeholder="Nhập tên của bạn..." aria-label="Nhập tên của bạn">
+                    <button type="submit" class="btn">Nhận lời chúc</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Wishes Screen -->
+        <section id="wishes-screen" class="screen">
+            <canvas id="fireworks-canvas"></canvas>
+
+            <!-- Envelope Structure -->
+            <div id="envelope-container">
+                <div class="envelope">
+                    <div class="envelope-prompt">Bấm vào để mở</div>
+                    <div class="envelope-flap top"></div>
+                    <div class="envelope-body"></div>
+                </div>
+            </div>
+
+            <!-- Wish content will appear directly on the background -->
+            <div id="wish-content-container">
+                <p id="greeting-line" class="greeting-text"></p>
+                <div id="wish-text" class="wish-letter"></div>
+                <p id="signature-line" class="signature-text"></p>
+                <div class="button-group">
+                    <button id="new-wish-btn" class="btn">Lời chúc khác</button>
+                </div>
+            </div>
+            
+            <div class="controls-corner">
+                <div class="music-player-container">
+                    <div id="music-player">
+                        <div id="music-disc-container">
+                            <img src="https://placehold.co/100x100/333/FFF?text=VTS" id="music-disc" alt="VTS disc">
+                        </div>
+                        <div class="music-controls-stack">
+                             <button id="music-toggle" aria-label="Tắt/Bật nhạc">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
+                                    <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
+                                    <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
+                                </svg>
+                            </button>
+                            <div id="song-list">
+                                <button class="song-item active-song" data-song="nhacnen.mp3">V</button>
+                                <button class="song-item" data-song="nhacnen2.mp3">T</button>
+                                <button class="song-item" data-song="nhacnen3.mp3">S</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="music-tooltip" class="tooltip">
+                        Bấm vào 1 trong 3 nút V T S để phát nhạc, đổi bài
+                    </div>
+                </div>
+            </div>
+             <div class="bottom-right-corner">
+                <div id="bouquet-container">
+                    <svg class="bouquet-svg" viewBox="0 0 250 200">
+                        <defs>
+                            <g id="rose-art">
+                                <path class="stem" d="M 0,0 L 0,80" />
+                                <path class="leaf leaf-left" d="M 0,60 C -10,50 -10,30 0,20" />
+                                <path class="leaf leaf-right" d="M 0,50 C 10,40 10,20 0,10" />
+                                <circle class="petal petal-1" cx="0" cy="0" r="12" />
+                                <circle class="petal petal-2" cx="0" cy="0" r="12" />
+                                <circle class="petal petal-3" cx="0" cy="0" r="12" />
+                                <circle class="petal petal-4" cx="0" cy="0" r="12" />
+                                <circle class="petal petal-5" cx="0" cy="0" r="12" />
+                                <circle class="petal petal-6" cx="0" cy="0" r="12" />
+                                <circle class="pistil" cx="0" cy="0" r="4" />
+                            </g>
+                        </defs>
+                        <!-- 6 roses pre-arranged -->
+                        <use href="#rose-art" class="rose rose-1"/>
+                        <use href="#rose-art" class="rose rose-2"/>
+                        <use href="#rose-art" class="rose rose-3"/>
+                        <use href="#rose-art" class="rose rose-4"/>
+                        <use href="#rose-art" class="rose rose-5"/>
+                        <use href="#rose-art" class="rose rose-6"/>
+                        <path class="ribbon" d="M100 130 Q125 145 150 130 T 200 130" />
+                    </svg>
+                </div>
+                <div class="coder-credit">Code by KhanhToan</div>
+             </div>
+        </section>
+    </main>
+</body>
+</html>
+
