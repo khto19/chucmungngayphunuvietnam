@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fff5f6">
   <meta name="description" content="Thiệp chúc mừng 20/10 dành tặng các chị em đội Võ Thị Sáu — mở thiệp, nhận lời chúc ngẫu nhiên, hoa bay và pháo hoa.">
-  <title>Chúc mừng 20/10 | Đội Võ Thị Sáu</title>
+  <title>Chúc mừng 20/10 | Đội Võ Thị Sáu</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       color-scheme: light;
@@ -14,7 +14,7 @@
       --rose: #d94d75;
       --rose-dark: #b8335d;
       --cream: #fffaf3;
-      --gold: #d8ad65;
+      --gold: #d8ad65; --script-font: "Dancing Script", "Segoe Print", "Comic Sans MS", cursive;
     }
 
     * { box-sizing: border-box; }
@@ -407,7 +407,7 @@
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
       .letter, .envelope-flap, .wish-message, .seal { transition-duration: .01ms !important; }
     }
-  </style>
+  .eyebrow { margin-bottom: 7px; font-family: var(--script-font); font-size: clamp(21px, 4vw, 27px); font-weight: 700; letter-spacing: .015em; text-transform: none; } h1 { font-family: var(--script-font); font-size: clamp(52px, 10vw, 82px); font-weight: 700; line-height: .98; letter-spacing: -.015em; } .wish-message, .wish-name { font-family: var(--script-font); } .wish-message { font-size: clamp(19px, 3vw, 22px); font-weight: 600; letter-spacing: .005em; line-height: 1.72; }</style>
 </head>
 <body>
   <span class="sparkle" aria-hidden="true">✧</span>
@@ -421,7 +421,7 @@
   <canvas class="fireworks" id="fireworks" aria-hidden="true"></canvas>
 
   <main class="card">
-    <p class="eyebrow">Một ngày thật đặc biệt</p>
+    <p class="eyebrow">Võ Thị Sáu - Nhẫn</p>
     <h1>Chúc mừng<br>20/10</h1>
     <p class="date">20 · 10 · Ngày Phụ nữ Việt Nam</p>
 
@@ -498,7 +498,7 @@
     const particles = [];
     let lastWishIndex = -1;
     let frame = 0;
-    let celebrationTimers = [];
+    let celebrationTimers = []; let fireworksLoopTimer = 0;
     let openingTimer = 0;
     let currentName = '';
 
@@ -588,7 +588,7 @@
       tossFlowers();
     }
 
-    function showPersonalWish(name) {
+    function startContinuousFireworks() { window.clearInterval(fireworksLoopTimer); const launch = () => { if (!wishStage.classList.contains("open") || document.hidden) return; addBurst(window.innerWidth * (.12 + Math.random() * .76), window.innerHeight * (.13 + Math.random() * .5)); }; launch(); fireworksLoopTimer = window.setInterval(launch, 850); } function stopContinuousFireworks() { window.clearInterval(fireworksLoopTimer); fireworksLoopTimer = 0; } function showPersonalWish(name) { stopContinuousFireworks();
       currentName = name;
       let index;
       do { index = Math.floor(Math.random() * wishes.length); }
@@ -613,13 +613,13 @@
           wishStage.classList.add('open');
           openHint.textContent = 'Thiệp đã mở — lời chúc này được gửi riêng đến bạn!';
           formButton.disabled = false;
-          celebrate();
+          celebrate(); startContinuousFireworks();
         }, 950);
       });
     }
 
     anotherWishButton.addEventListener('click', () => showPersonalWish(currentName));
-    changeNameButton.addEventListener('click', () => {
+    changeNameButton.addEventListener('click', () => { stopContinuousFireworks(); celebrationTimers.forEach(window.clearTimeout); celebrationTimers = [];
       window.clearTimeout(openingTimer);
       wishStage.classList.remove('active', 'opening', 'open');
       card.classList.remove('has-opened-wish');
